@@ -25,19 +25,27 @@ Another way is to use the following commands.
 
 1. Set up the python environment:
     ```
-    conda create -n pvnet python=3.7
+    conda create -n pvnet python=3.8
     conda activate pvnet
 
-    # install torch 1.1 built from cuda 9.0
-    pip install torch==1.1.0 -f https://download.pytorch.org/whl/cu90/stable
+    # install cuda 11.3 in conda virtual environment
+    conda install cudatoolkit=11.3 cudnn=8.9.2
 
-    pip install Cython==0.28.2
+    # install torch 1.13 built for cuda 11.3
+    conda install pytorch=1.13.1
+
+    # install specific versions of Cython & setuptools
+    pip install Cython==0.28.2 setuptools==57.5.0
+
+    # install necessary libs
     sudo apt-get install libglfw3-dev libglfw3
+
+    # install dependencies
     pip install -r requirements.txt
     ```
 2. Compile cuda extensions under `lib/csrc`:
     ```
-    ROOT=/path/to/clean-pvnet
+    export ROOT=$(pwd)
     cd $ROOT/lib/csrc
     export CUDA_HOME="/usr/local/cuda-9.0"
     cd ransac_voting
