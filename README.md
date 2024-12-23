@@ -28,12 +28,13 @@ Another way is to use the following commands.
     conda create -n pvnet python=3.8
     conda activate pvnet
 
-    # install cuda 11.3 in conda virtual environment
-    conda install cudatoolkit=11.3 cudnn=8.9.2
-
-    # install torch 1.13 built for cuda 11.3
-    conda install pytorch=1.13.1
-
+    # install cuda 11.7 with pytorch 1.13.1 in conda virtual environment
+    conda install pytorch=1.13.1 torchvision torchaudio cudnn=8 pytorch-cuda=11.7 \
+                  cuda-version=11.7 cuda-cudart-dev=11.7.60 cuda-nvcc=11.7 \
+                  cuda-cccl=11.7 libcusparse-dev libcublas-dev=11.7 -c pytorch -c nvidia
+    # install ninja to accelerate build process
+    conda install ninja
+    
     # install specific versions of Cython & setuptools
     pip install Cython==0.28.2 setuptools==57.5.0
 
@@ -45,9 +46,9 @@ Another way is to use the following commands.
     ```
 2. Compile cuda extensions under `lib/csrc`:
     ```
-    export ROOT=$(pwd)
+    export ROOT=/home/dlweg/clean-pvnet-for-machinery
     cd $ROOT/lib/csrc
-    export CUDA_HOME="/usr/local/cuda-9.0"
+    export CUDA_HOME="/home/dlweg/miniconda3/envs/pvnet/"
     cd ransac_voting
     python setup.py build_ext --inplace
     cd ../nn
