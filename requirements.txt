@@ -19,3 +19,4 @@ tensorboardX==1.2
 cffi
 transforms3d
 protobuf==3.19.0
+imgaug
