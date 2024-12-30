@@ -69,7 +69,7 @@ Another way is to use the following commands.
     ```
 3. Set up datasets:
     ```
-    ROOT=/path/to/clean-pvnet
+    export ROOT=/path/to/clean-pvnet
     cd $ROOT/data
     ln -s /path/to/linemod linemod
     ln -s /path/to/linemod_orig linemod_orig
